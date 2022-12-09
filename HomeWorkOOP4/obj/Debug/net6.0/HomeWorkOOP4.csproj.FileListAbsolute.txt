@@ -1,0 +1,15 @@
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\bin\Debug\net6.0\HomeWorkOOP4.exe
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\bin\Debug\net6.0\HomeWorkOOP4.deps.json
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\bin\Debug\net6.0\HomeWorkOOP4.runtimeconfig.json
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\bin\Debug\net6.0\HomeWorkOOP4.dll
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\bin\Debug\net6.0\HomeWorkOOP4.pdb
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\obj\Debug\net6.0\HomeWorkOOP4.csproj.AssemblyReference.cache
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\obj\Debug\net6.0\HomeWorkOOP4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\obj\Debug\net6.0\HomeWorkOOP4.AssemblyInfoInputs.cache
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\obj\Debug\net6.0\HomeWorkOOP4.AssemblyInfo.cs
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\obj\Debug\net6.0\HomeWorkOOP4.csproj.CoreCompileInputs.cache
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\obj\Debug\net6.0\HomeWorkOOP4.dll
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\obj\Debug\net6.0\refint\HomeWorkOOP4.dll
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\obj\Debug\net6.0\HomeWorkOOP4.pdb
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\obj\Debug\net6.0\HomeWorkOOP4.genruntimeconfig.cache
+C:\Users\Влад и Аня\source\repos\HomeWorkOOP4\HomeWorkOOP4\obj\Debug\net6.0\ref\HomeWorkOOP4.dll
