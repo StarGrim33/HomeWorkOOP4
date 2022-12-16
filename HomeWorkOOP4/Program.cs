@@ -96,7 +96,7 @@ class Player
 class Deck
 {
     Random randomCardNumber = new();
-    public List<Cards> _cards = new List<Cards> { new Cards("6", "Черви"), new Cards("7", "Черви"), new Cards("8", "Черви"),  new Cards("9", "Черви"), 
+    private List<Cards> _cards = new List<Cards> { new Cards("6", "Черви"), new Cards("7", "Черви"), new Cards("8", "Черви"),  new Cards("9", "Черви"), 
     new Cards("10", "Черви"), new Cards("Валет", "Черви"), new Cards("Дама", "Черви"), new Cards("Король", "Черви"), new Cards("Туз", "Черви")};
 
     public void ShowAllCards()
