@@ -25,17 +25,17 @@
                 Console.WriteLine($"{CommandExit}-Выйти из программы");
 
                 string? userInput = Console.ReadLine();
-                
+
                 switch (userInput)
                 {
                     case CommandTakeCard:
                         player.TakeCard(deck);
                         break;
                     case CommandShowAllCards:
-                        deck.ShowAllCards();
+                        deck.ShowAll();
                         break;
                     case CommandShowMyCards:
-                        player.ShowPlayerCards();
+                        player.ShowCards();
                         break;
                     case CommandExit:
                         isProgramOn = false;
@@ -48,18 +48,18 @@
 
 class Player
 {
+    private List<Cards> _cardsOnHand = new();
+
+    public string Name { get; private set; }
+
     public Player(string name)
     {
         Name = name;
     }
 
-    public string Name { get; private set; }
-
-    private List<Cards> _cardsOnHand = new();
-
     public void TakeCard(Deck deck)
     {
-        if(deck.TryGetCard(out Cards? cards))
+        if (deck.Remove(out Cards? cards))
         {
             _cardsOnHand.Add(cards);
             Console.WriteLine("Вы взяли карту");
@@ -71,13 +71,13 @@ class Player
         }
     }
 
-    public void ShowPlayerCards()
+    public void ShowCards()
     {
         int minValueCard = 1;
 
         if (_cardsOnHand.Count >= minValueCard)
         {
-            Console.WriteLine("Карты:");
+            Console.WriteLine("Ваши карты:");
 
             for (int i = 0; i < _cardsOnHand.Count; i++)
             {
@@ -95,16 +95,29 @@ class Player
 
 class Deck
 {
-    Random randomCardNumber = new();
-    private List<Cards> _cards = new List<Cards> { new Cards("6", "Черви"), new Cards("7", "Черви"), new Cards("8", "Черви"),  new Cards("9", "Черви"), 
-    new Cards("10", "Черви"), new Cards("Валет", "Черви"), new Cards("Дама", "Черви"), new Cards("Король", "Черви"), new Cards("Туз", "Черви")};
+    public Random random { get; private set; } = new();
 
-    public void ShowAllCards()
+    private List<Cards> _cards = new List<Cards>();
+
+    public Deck()
+    {
+        _cards.Add(new Cards("6", "Черви"));
+        _cards.Add(new Cards("7", "Черви"));
+        _cards.Add(new Cards("8", "Черви"));
+        _cards.Add(new Cards("9", "Черви"));
+        _cards.Add(new Cards("10", "Черви"));
+        _cards.Add(new Cards("Валет", "Черви"));
+        _cards.Add(new Cards("Дама", "Черви"));
+        _cards.Add(new Cards("Король", "Черви"));
+        _cards.Add(new Cards("Туз", "Черви"));
+    }
+
+    public void ShowAll()
     {
         Console.Clear();
         Console.WriteLine("Колода карт:");
 
-        for(int i = 0; i < _cards.Count; i++)
+        for (int i = 0; i < _cards.Count; i++)
         {
             Console.WriteLine($"Карта - {_cards[i].Name}, номинал - {_cards[i].Value}");
         }
@@ -112,11 +125,11 @@ class Deck
         Console.ReadKey();
     }
 
-    public bool TryGetCard(out Cards? cards)
+    public bool Remove(out Cards? cards)
     {
-        if(_cards.Count >= 1)
+        if (_cards.Count >= 1)
         {
-            cards = _cards[GetNumberCard()]; 
+            cards = _cards[GetNumber()];
             _cards.Remove(cards);
             return true;
         }
@@ -128,30 +141,30 @@ class Deck
         }
     }
 
-    private int GetNumberCard()
+    private int GetNumber()
     {
         int numberCard = 0;
 
         if (_cards.Count > 0)
         {
-            numberCard = randomCardNumber.Next(_cards.Count);
+            numberCard = random.Next(_cards.Count);
             return numberCard;
         }
         else
         {
             return numberCard;
         }
-    } 
+    }
 }
 
 class Cards
 {
+    public string Name { get; private set; }
+    public string Value { get; private set; }
+
     public Cards(string name, string value)
     {
         Name = name;
         Value = value;
-    }
-
-    public string Name { get;  private set; }
-    public string Value { get; private set; }
+    }   
 }
