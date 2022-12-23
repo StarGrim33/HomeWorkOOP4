@@ -59,7 +59,7 @@ class Player
 
     public void TakeCard(Deck deck)
     {
-        if (deck.Remove(out Cards? cards))
+        if (deck.TryReturnCard(out Cards? cards))
         {
             _cardsOnHand.Add(cards);
             Console.WriteLine("Вы взяли карту");
@@ -95,7 +95,7 @@ class Player
 
 class Deck
 {
-    public Random random { get; private set; } = new();
+    private Random random = new();
 
     private List<Cards> _cards = new List<Cards>();
 
@@ -125,7 +125,7 @@ class Deck
         Console.ReadKey();
     }
 
-    public bool Remove(out Cards? cards)
+    public bool TryReturnCard(out Cards? cards)
     {
         if (_cards.Count >= 1)
         {
@@ -148,12 +148,10 @@ class Deck
         if (_cards.Count > 0)
         {
             numberCard = random.Next(_cards.Count);
-            return numberCard;
+            
         }
-        else
-        {
-            return numberCard;
-        }
+
+        return numberCard;
     }
 }
 
