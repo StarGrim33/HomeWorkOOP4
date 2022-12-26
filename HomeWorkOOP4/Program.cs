@@ -32,7 +32,7 @@
                 switch (userInput)
                 {
                     case CommandTakeCard:
-                        player.TakeCard(deck);
+                        player.TakeCard(deck.GiveCard());
                         break;
 
                     case CommandShowAllCards:
@@ -56,24 +56,25 @@ class Player
 {
     private List<Card> _cardsOnHand = new();
     public string Name { get; private set; }
-    
+
     public Player(string name)
     {
         Name = name;
     }
 
-    public void TakeCard(Deck deck)
+    public void TakeCard(Card card)
     {
-        if (deck.TryReturnCard(out Card? card))
-        {
-            _cardsOnHand.Add(card);
-            Console.WriteLine("Вы взяли карту");
-            Console.ReadKey();
-        }
-        else
-        {
-            Console.WriteLine("Закончились карты в колоде");
-        }
+        //if (deck.GiveCard())
+        //{
+        _cardsOnHand.Add(card);
+        Console.WriteLine("Вы взяли карту");
+        Console.ReadKey();
+        //}
+        //else
+        //{
+        //    Console.WriteLine("Закончились карты в колоде");
+        //}
+
     }
 
     public void ShowCards()
@@ -133,33 +134,34 @@ class Deck
 
         Console.ReadKey();
     }
+
     public Card GiveCard()
     {
-        Card card = null;
+        Card? card = null;
 
-        if(_cards.Count > 0)
+        if (_cards.Count > 0)
         {
-            card = _cards[0];
+            card = _cards[GetNumber()];
             _cards.Remove(card);
         }
 
         return card;
     }
-    public bool TryReturnCard(out Card? cards)
-    {
-        if (_cards.Count >= 0)
-        {
-            cards = _cards[GetNumber()];
-            _cards.Remove(cards);
-            return true;
-        }
-        else
-        {
-            cards = null;
-            Console.WriteLine("Ошибка");
-            return false;
-        }
-    }
+    //public bool TryReturnCard(out Card? cards)
+    //{
+    //    if (_cards.Count >= 0)
+    //    {
+    //        cards = _cards[GetNumber()];
+    //        _cards.Remove(cards);
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        cards = null;
+    //        Console.WriteLine("Ошибка");
+    //        return false;
+    //    }
+    //}
 
     private int GetNumber()
     {
@@ -168,7 +170,7 @@ class Deck
         if (_cards.Count > 0)
         {
             numberCard = random.Next(_cards.Count);
-            
+
         }
 
         return numberCard;
@@ -184,5 +186,5 @@ class Card
     {
         Name = name;
         Value = value;
-    }   
+    }
 }
