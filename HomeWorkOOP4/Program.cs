@@ -98,8 +98,8 @@ class Deck
     private Random _random = new();
 
     private List<Card> _cards = new List<Card>();
-    string[] value = { "6", "7", "8", "9", "10", "Валет", "Дама", "Король", "Туз"};
-    string[] symbol = { "Черви", "Буби", "Пики", "Кресты" };
+    private string[] value = { "6", "7", "8", "9", "10", "Валет", "Дама", "Король", "Туз"};
+    private string[] symbol = { "Черви", "Буби", "Пики", "Кресты" };
 
     public Deck()
     {
