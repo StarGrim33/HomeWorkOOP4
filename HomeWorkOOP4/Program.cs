@@ -98,16 +98,16 @@ class Deck
     private Random _random = new();
 
     private List<Card> _cards = new List<Card>();
-    private string[] value = { "6", "7", "8", "9", "10", "Валет", "Дама", "Король", "Туз"};
-    private string[] symbol = { "Черви", "Буби", "Пики", "Кресты" };
+    private string[] _value = { "6", "7", "8", "9", "10", "Валет", "Дама", "Король", "Туз"};
+    private string[] _symbol = { "Черви", "Буби", "Пики", "Кресты" };
 
     public Deck()
     {
-        for (int i = 0; i < symbol.Length; i++)
+        for (int i = 0; i < _symbol.Length; i++)
         {
-            for (int j = 0; j < value.Length; j++)
+            for (int j = 0; j < _value.Length; j++)
             {
-                _cards.Add(new Card(value[j], symbol[i]));
+                _cards.Add(new Card(_value[j], _symbol[i]));
             }
         }
     }
