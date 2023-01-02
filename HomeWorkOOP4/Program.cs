@@ -57,7 +57,7 @@ class Player
     public Player(string name)
     {
         Name = name;
-        SetName();
+        ChangeName();
     }
 
     public void TakeCard(Card card)
@@ -86,7 +86,7 @@ class Player
         }
     }
 
-    public void SetName()
+    public void ChangeName()
     {
         Console.WriteLine("Здравствуйте, как Вас зовут?");
         Name = Console.ReadLine();
@@ -95,48 +95,21 @@ class Player
 
 class Deck
 {
-    private Random random = new();
+    private Random _random = new();
 
     private List<Card> _cards = new List<Card>();
+    string[] value = { "6", "7", "8", "9", "10", "Валет", "Дама", "Король", "Туз"};
+    string[] symbol = { "Черви", "Буби", "Пики", "Кресты" };
 
     public Deck()
     {
-        _cards.Add(new Card("6", "Черви"));
-        _cards.Add(new Card("7", "Черви"));
-        _cards.Add(new Card("8", "Черви"));
-        _cards.Add(new Card("9", "Черви"));
-        _cards.Add(new Card("10", "Черви"));
-        _cards.Add(new Card("Валет", "Черви"));
-        _cards.Add(new Card("Дама", "Черви"));
-        _cards.Add(new Card("Король", "Черви"));
-        _cards.Add(new Card("Туз", "Черви"));
-        _cards.Add(new Card("6", "Буби"));
-        _cards.Add(new Card("7", "Буби"));
-        _cards.Add(new Card("8", "Буби"));
-        _cards.Add(new Card("9", "Буби"));
-        _cards.Add(new Card("10", "Буби"));
-        _cards.Add(new Card("Валет", "Буби"));
-        _cards.Add(new Card("Дама", "Буби"));
-        _cards.Add(new Card("Король", "Буби"));
-        _cards.Add(new Card("Туз", "Буби"));
-        _cards.Add(new Card("6", "Пики"));
-        _cards.Add(new Card("7", "Пики"));
-        _cards.Add(new Card("8", "Пики"));
-        _cards.Add(new Card("9", "Пики"));
-        _cards.Add(new Card("10", "Пики"));
-        _cards.Add(new Card("Валет", "Пики"));
-        _cards.Add(new Card("Дама", "Пики"));
-        _cards.Add(new Card("Король", "Пики"));
-        _cards.Add(new Card("Туз", "Пики"));
-        _cards.Add(new Card("6", "Кресты"));
-        _cards.Add(new Card("7", "Кресты"));
-        _cards.Add(new Card("8", "Кресты"));
-        _cards.Add(new Card("9", "Кресты"));
-        _cards.Add(new Card("10", "Кресты"));
-        _cards.Add(new Card("Валет", "Кресты"));
-        _cards.Add(new Card("Дама", "Кресты"));
-        _cards.Add(new Card("Король", "Кресты"));
-        _cards.Add(new Card("Туз", "Кресты"));
+        for (int i = 0; i < symbol.Length; i++)
+        {
+            for (int j = 0; j < value.Length; j++)
+            {
+                _cards.Add(new Card(value[j], symbol[i]));
+            }
+        }
     }
 
     public void ShowAll()
@@ -171,7 +144,7 @@ class Deck
 
         if (_cards.Count > 0)
         {
-            numberCard = random.Next(_cards.Count);
+            numberCard = _random.Next(_cards.Count);
 
         }
 
