@@ -10,14 +10,14 @@
             const string CommandExit = "4";
 
             bool isProgramOn = true;
-
-            Player player = new("Влад");
+            int cursorPosition = 50;
+            Player player = new("Аноним");
             Deck deck = new();
 
             while (isProgramOn)
             {
                 Console.Clear();
-                Console.SetCursorPosition(50, 0);
+                Console.SetCursorPosition(cursorPosition, 0);
                 Console.WriteLine($"Игрок - {player.Name}");
                 Console.WriteLine($"{CommandTakeCard}-Взять карту");
                 Console.WriteLine($"{CommandShowAllCards}-Показать все карты");
@@ -29,14 +29,17 @@
                 switch (userInput)
                 {
                     case CommandTakeCard:
-                        player.TakeCard(deck);
+                        player.TakeCard(deck.GiveCard());
                         break;
+
                     case CommandShowAllCards:
                         deck.ShowAll();
                         break;
+
                     case CommandShowMyCards:
                         player.ShowCards();
                         break;
+
                     case CommandExit:
                         isProgramOn = false;
                         break;
@@ -48,34 +51,26 @@
 
 class Player
 {
-    private List<Cards> _cardsOnHand = new();
-
-    public string Name { get; private set; }
-
     public Player(string name)
     {
         Name = name;
+        ChangeName();
     }
 
-    public void TakeCard(Deck deck)
+    public string Name { get; private set; }
+
+    private List<Card> _cardsOnHand = new();
+
+    public void TakeCard(Card card)
     {
-        if (deck.TryReturnCard(out Cards? cards))
-        {
-            _cardsOnHand.Add(cards);
-            Console.WriteLine("Вы взяли карту");
-            Console.ReadKey();
-        }
-        else
-        {
-            Console.WriteLine("Закончились карты в колоде");
-        }
+        _cardsOnHand.Add(card);
+        Console.WriteLine("Вы взяли карту");
+        Console.ReadKey();
     }
 
     public void ShowCards()
     {
-        int minValueCard = 1;
-
-        if (_cardsOnHand.Count >= minValueCard)
+        if (_cardsOnHand.Count >= 0)
         {
             Console.WriteLine("Ваши карты:");
 
@@ -91,26 +86,32 @@ class Player
             Console.ReadKey();
         }
     }
+
+    public void ChangeName()
+    {
+        Console.WriteLine("Здравствуйте, как Вас зовут?");
+        Name = Console.ReadLine();
+    }
 }
 
 class Deck
 {
-    private Random random = new();
-
-    private List<Cards> _cards = new List<Cards>();
-
     public Deck()
     {
-        _cards.Add(new Cards("6", "Черви"));
-        _cards.Add(new Cards("7", "Черви"));
-        _cards.Add(new Cards("8", "Черви"));
-        _cards.Add(new Cards("9", "Черви"));
-        _cards.Add(new Cards("10", "Черви"));
-        _cards.Add(new Cards("Валет", "Черви"));
-        _cards.Add(new Cards("Дама", "Черви"));
-        _cards.Add(new Cards("Король", "Черви"));
-        _cards.Add(new Cards("Туз", "Черви"));
+        string[] _value = { "6", "7", "8", "9", "10", "Валет", "Дама", "Король", "Туз" };
+        string[] _symbol = { "Черви", "Буби", "Пики", "Кресты" };
+
+        for (int i = 0; i < _symbol.Length; i++)
+        {
+            for (int j = 0; j < _value.Length; j++)
+            {
+                _cards.Add(new Card(_value[j], _symbol[i]));
+            }
+        }
     }
+
+    private Random _random = new();
+    private List<Card> _cards = new List<Card>();
 
     public void ShowAll()
     {
@@ -125,20 +126,17 @@ class Deck
         Console.ReadKey();
     }
 
-    public bool TryReturnCard(out Cards? cards)
+    public Card GiveCard()
     {
-        if (_cards.Count >= 1)
+        Card? card = null;
+
+        if (_cards.Count > 0)
         {
-            cards = _cards[GetNumber()];
-            _cards.Remove(cards);
-            return true;
+            card = _cards[GetNumber()];
+            _cards.Remove(card);
         }
-        else
-        {
-            cards = null;
-            Console.WriteLine("Ошибка");
-            return false;
-        }
+
+        return card;
     }
 
     private int GetNumber()
@@ -147,22 +145,22 @@ class Deck
 
         if (_cards.Count > 0)
         {
-            numberCard = random.Next(_cards.Count);
-            
+            numberCard = _random.Next(_cards.Count);
+
         }
 
         return numberCard;
     }
 }
 
-class Cards
+class Card
 {
-    public string Name { get; private set; }
-    public string Value { get; private set; }
-
-    public Cards(string name, string value)
+    public Card(string name, string value)
     {
         Name = name;
         Value = value;
-    }   
+    }
+
+    public string Name { get; private set; }
+    public string Value { get; private set; }
 }
