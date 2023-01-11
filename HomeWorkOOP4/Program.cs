@@ -51,6 +51,8 @@
 
 class Player
 {
+    private List<Card> _cardsOnHand = new();
+
     public Player(string name)
     {
         Name = name;
@@ -58,8 +60,6 @@ class Player
     }
 
     public string Name { get; private set; }
-
-    private List<Card> _cardsOnHand = new();
 
     public void TakeCard(Card card)
     {
@@ -96,6 +96,9 @@ class Player
 
 class Deck
 {
+    private Random _random = new();
+    private List<Card> _cards = new List<Card>();
+
     public Deck()
     {
         string[] _value = { "6", "7", "8", "9", "10", "Валет", "Дама", "Король", "Туз" };
@@ -109,9 +112,6 @@ class Deck
             }
         }
     }
-
-    private Random _random = new();
-    private List<Card> _cards = new List<Card>();
 
     public void ShowAll()
     {
